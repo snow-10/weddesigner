@@ -54,11 +54,17 @@
             let count = 0;
             let catImg = document.getElementById('p');
 
+            // Use a single Audio instance for pop1.mp3
+            const popAudio = new Audio('pops/pop1.mp3');
+            popAudio.preload = 'auto';
+            popAudio.volume = 0.9;
+
             function addCount(){
                 count++;
                 catImg.innerHTML = count;
                 catImg.id = 'op';
-
+                try { popAudio.currentTime = 0; } catch(e) {}
+                popAudio.play().catch(() => {});
             }
 
             let close = ()=> {
